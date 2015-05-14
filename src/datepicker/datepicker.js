@@ -481,9 +481,9 @@ function ($locale,$compile, $parse, $document, $position, dateFilter, dateParser
       scope.showButtonBar = angular.isDefined(attrs.showButtonBar) ? scope.$parent.$eval(attrs.showButtonBar) : datepickerPopupConfig.showButtonBar;
 
       scope.getText = function( key ) {
-        scope['currentText']=$locale.DATETIME_FORMATS.TODAY;
-		    scope['clearText']=$locale.DATETIME_FORMATS.CLEAR;
-		    scope['closeText']=$locale.DATETIME_FORMATS.CLOSE;
+        scope['currentText']=$locale.DATETIME_FORMATS.TODAY||scope['currentText'];
+	scope['clearText']=$locale.DATETIME_FORMATS.CLEAR||scope['clearText'];
+	scope['closeText']=$locale.DATETIME_FORMATS.CLOSE||scope['closeText'];
         return scope[key + 'Text'] || datepickerPopupConfig[key + 'Text'];
       };
 
