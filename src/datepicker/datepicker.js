@@ -460,8 +460,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   showButtonBar: true
 })
 
-.directive('datepickerPopup', ['$compile', '$parse', '$document', '$position', 'dateFilter', 'dateParser', 'datepickerPopupConfig',
-function ($compile, $parse, $document, $position, dateFilter, dateParser, datepickerPopupConfig) {
+.directive('datepickerPopup', ['$locale','$compile', '$parse', '$document', '$position', 'dateFilter', 'dateParser', 'datepickerPopupConfig',
+function ($locale,$compile, $parse, $document, $position, dateFilter, dateParser, datepickerPopupConfig) {
   return {
     restrict: 'EA',
     require: 'ngModel',
@@ -481,6 +481,9 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
       scope.showButtonBar = angular.isDefined(attrs.showButtonBar) ? scope.$parent.$eval(attrs.showButtonBar) : datepickerPopupConfig.showButtonBar;
 
       scope.getText = function( key ) {
+        scope['currentText']=$locale.DATETIME_FORMATS.TODAY;
+		    scope['clearText']=$locale.DATETIME_FORMATS.CLEAR;
+		    scope['closeText']=$locale.DATETIME_FORMATS.CLOSE;
         return scope[key + 'Text'] || datepickerPopupConfig[key + 'Text'];
       };
 
